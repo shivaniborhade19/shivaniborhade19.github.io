@@ -1,0 +1,701 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Shivani Borhade</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Karla:wght@400;500;700&family=Caveat:wght@500;700&display=swap">
+<style>
+/* Layout: one narrow reading column, like a notebook page. Sections are plain headings;
+   projects are pinned "snapshots" beside text; journal entries open like Notion rows. */
+:root {
+  --bg: #F6F7F3;
+  --paper: #FFFFFF;
+  --fg: #1B2430;
+  --muted: #566170;
+  --line: #DADED6;
+  --hi: #FFE27A;
+  --accent: #2A5C8E;
+  --tint: #EDF0EA;
+  --display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+  --body: "Karla", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --hand: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14181D; --paper: #1C2229; --fg: #E6EAEE; --muted: #9AA5B1;
+    --line: #2D353E; --hi: #5E4F12; --accent: #8DB8E8; --tint: #1A2026;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14181D; --paper: #1C2229; --fg: #E6EAEE; --muted: #9AA5B1;
+  --line: #2D353E; --hi: #5E4F12; --accent: #8DB8E8; --tint: #1A2026;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.65;
+  padding-block: 28px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 72px; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.15; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+.mark { background: linear-gradient(transparent 58%, var(--hi) 58%); padding: 0 .1em; }
+.hand { font-family: var(--hand); font-weight: 500; font-size: 1.35rem; line-height: 1.2; color: var(--muted); }
+.label { font-size: .78rem; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+
+/* top bar */
+.top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 24px; }
+.top .name { font-family: var(--display); font-weight: 700; font-size: 1.05rem; }
+.top nav { display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: .95rem; }
+.top nav a { color: var(--fg); text-decoration: none; border-bottom: 1px dashed var(--line); }
+.top nav a:hover { border-bottom-color: var(--accent); }
+
+/* hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 240px); gap: 32px; align-items: center; }
+.hero h1 { font-size: clamp(2.3rem, 7vw, 3.4rem); font-weight: 700; margin-bottom: 16px; }
+.hero .lead { font-size: 1.15rem; max-width: 36ch; }
+.hero .status { margin-top: 20px; display: flex; flex-direction: column; gap: 4px; color: var(--muted); font-size: .98rem; }
+.open { display: inline-block; margin-top: 20px; background: var(--hi); color: var(--fg); padding: 4px 12px; font-weight: 700; font-size: .92rem; }
+
+/* snapshot frames */
+.snap {
+  margin: 0; background: var(--paper); border: 1px solid var(--line);
+  padding: 10px 10px 8px; position: relative;
+  box-shadow: 0 8px 18px rgba(0,0,0,.07);
+  transform: rotate(-1.6deg);
+}
+.snap::before {
+  content: ""; position: absolute; top: -9px; left: 50%; width: 64px; height: 18px;
+  margin-left: -32px; background: var(--hi); opacity: .8; transform: rotate(2deg);
+}
+.snap .ph {
+  aspect-ratio: 4 / 3; width: 100%; display: grid; place-items: center; text-align: center;
+  padding: 12px; color: var(--muted); font-family: var(--hand); font-size: 1.2rem; line-height: 1.2;
+  background: repeating-linear-gradient(45deg, var(--tint) 0 8px, transparent 8px 16px);
+}
+.snap figcaption { font-family: var(--hand); font-size: 1.15rem; color: var(--muted); padding-top: 6px; line-height: 1.2; }
+.snap.tilt-r { transform: rotate(1.4deg); }
+.snap img { display: block; width: 100%; height: auto; }
+.snap video { display: block; width: 100%; height: auto; background: var(--tint); }
+.gallery.natural { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); align-items: start; }
+.gallery.natural .snap img, .gallery.natural .snap video { aspect-ratio: auto; }
+.gh { display: inline-flex; align-items: center; gap: 8px; }
+.gh svg { width: 18px; height: 18px; fill: currentColor; flex: none; }
+.projects > .snap.vid { align-self: flex-start; width: 100%; max-width: 520px; transform: rotate(-0.7deg); }
+.gallery .snap img { aspect-ratio: 3 / 2; object-fit: cover; }
+
+/* sections */
+section > h2 { font-size: 1.7rem; margin-bottom: 8px; }
+section > .intro { color: var(--muted); max-width: 52ch; margin-bottom: 28px; }
+
+/* three-up notes */
+.now { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px 24px; }
+.now > div { border-top: 2px solid var(--fg); padding-top: 10px; }
+.now h3 { font-size: 1.05rem; margin-bottom: 4px; }
+.now p { color: var(--muted); font-size: .98rem; }
+.now a { font-weight: 700; }
+
+/* path */
+.path { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.path > li { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 4px 24px; padding: 20px 0; border-top: 1px solid var(--line); }
+.path > li:last-child { border-bottom: 1px solid var(--line); }
+.path .when { color: var(--muted); font-size: .92rem; font-variant-numeric: tabular-nums; padding-top: 3px; }
+.path h3 { font-size: 1.15rem; }
+.path .where { color: var(--muted); font-size: .95rem; margin-bottom: 6px; }
+.path p.d { font-size: .98rem; }
+.org { display: inline-flex; align-items: center; gap: 10px; color: var(--fg); text-decoration: none; font-weight: 500; }
+.org:hover span { color: var(--accent); text-decoration: underline; }
+.org .logo { height: 40px; min-width: 40px; width: auto; max-width: 84px; flex: none; object-fit: contain; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 5px; }
+.org .mono { display: grid; place-items: center; padding: 0 6px; font-family: var(--display); font-weight: 700; font-size: .78rem; color: #2A5C8E; }
+.path .where:has(.org) { display: flex; flex-wrap: wrap; align-items: center; gap: 0; margin: 6px 0 10px; }
+.snap a.shot { display: block; }
+.org .logo.round { border-radius: 50%; padding: 0; border: 0; background: #000; }
+.project .go { display: flex; flex-wrap: wrap; gap: 6px 22px; }
+h3 a.title { color: inherit; text-decoration: none; }
+.org .logo.dark { background: #000; border-color: #000; padding: 2px; }
+.path .where.client { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; color: var(--muted); margin: 14px 0 6px; }
+.path .where.client:first-of-type { margin-top: 6px; }
+.projects > .snap.vid img { display: block; width: 100%; height: auto; }
+h3 a.title:hover { color: var(--accent); text-decoration: underline; }
+.path ul { margin: 8px 0 0; padding-left: 1.1em; font-size: .98rem; }
+.path ul li { margin-bottom: 5px; }
+.tools { margin-top: 10px; font-size: .88rem; color: var(--muted); }
+.tools .label { margin-right: 8px; }
+
+/* skills */
+.skills { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 10px 24px; margin: 0 0 36px; }
+.skills dt { font-size: .78rem; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); font-weight: 700; padding-top: 4px; }
+.skills dd { margin: 0; }
+
+/* projects */
+.projects { display: flex; flex-direction: column; gap: 56px; }
+.project { display: grid; grid-template-columns: minmax(0, 230px) minmax(0, 1fr); gap: 28px; align-items: start; }
+.project h3 { font-size: 1.35rem; margin-bottom: 6px; }
+.project .tag { margin-bottom: 8px; display: block; }
+.project .stack { margin-top: 10px; font-size: .88rem; color: var(--muted); }
+.project .go { margin-top: 10px; font-weight: 700; font-size: .95rem; }
+.project ul { margin: 8px 0 0; padding-left: 1.1em; font-size: .98rem; }
+.project li { margin-bottom: 4px; }
+.project .hand { display: block; margin-top: 12px; background: var(--tint); padding: 8px 12px; border-left: 3px solid var(--hi); }
+.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 28px; margin-top: 8px; }
+.gallery .snap:nth-child(2) { transform: rotate(1.4deg); }
+.gallery .snap:nth-child(3) { transform: rotate(-0.8deg); }
+.sub { font-size: .98rem; color: var(--muted); }
+.project p + p { margin-top: 10px; }
+.path p.d + p.d { margin-top: 8px; }
+
+/* journal */
+.entries { border-top: 1px solid var(--line); }
+details { border-bottom: 1px solid var(--line); }
+summary {
+  list-style: none; cursor: pointer; padding: 18px 0;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; align-items: baseline;
+}
+summary::-webkit-details-marker { display: none; }
+summary .t { font-family: var(--display); font-weight: 500; font-size: 1.15rem; }
+summary .t::before { content: "+"; display: inline-block; width: 1.2em; color: var(--accent); font-weight: 700; }
+details[open] summary .t::before { content: "\2212"; }
+summary .meta { font-size: .85rem; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+summary:hover .t { color: var(--accent); }
+.post { padding: 0 0 26px 1.2em; display: flex; flex-direction: column; gap: 14px; max-width: 60ch; }
+.post h4 { font-family: var(--display); font-size: 1.05rem; margin: 10px 0 -6px; }
+.post .pics { display: grid; grid-template-columns: minmax(0, 9fr) minmax(0, 16fr); gap: 24px; align-items: start; margin: 10px 0; }
+.gallery.two { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); max-width: 620px; }
+.post .pics .snap:nth-child(2) { transform: rotate(1.2deg); }
+.post .pics.trio { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.post .pics.trio .wide { grid-column: 1 / -1; transform: rotate(-0.6deg); }
+.post .pics.trio .snap:nth-child(3) { transform: rotate(-1.2deg); }
+@media (max-width: 480px) { .post .pics, .post .pics.trio { grid-template-columns: minmax(0, 1fr); } .post .pics .snap { max-width: 320px; } }
+.post .hand { background: var(--tint); padding: 8px 12px; border-left: 3px solid var(--hi); }
+
+/* contact */
+.contact p { max-width: 50ch; }
+.contact .row { margin-top: 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+.contact code { font-family: var(--body); font-weight: 700; font-size: 1.05rem; user-select: all; }
+.contact button {
+  font: inherit; font-size: .9rem; font-weight: 700; color: var(--fg); background: var(--paper);
+  border: 1px solid var(--fg); padding: 6px 14px; cursor: pointer;
+}
+.contact button:hover { background: var(--hi); }
+.foot { color: var(--muted); font-size: .88rem; }
+
+@media (max-width: 640px) {
+  .hero { grid-template-columns: minmax(0, 1fr); }
+  .hero .snap { max-width: 260px; }
+  .project { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .project .snap { max-width: 280px; }
+  .path > li { grid-template-columns: minmax(0, 1fr); }
+  .skills { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .skills dd { margin-bottom: 12px; }
+  .wrap { gap: 56px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* website services card */
+.services { margin-top: 26px; padding: 18px 20px; max-width: 34rem; background: var(--paper); border: 1px solid var(--line); border-left: 4px solid var(--hi); border-radius: 10px; }
+.services .label { display: block; margin-bottom: 6px; }
+.services-lead { margin: 0 0 12px; font-family: var(--display); font-weight: 700; font-size: 1.08rem; color: var(--fg); }
+.chips { list-style: none; margin: 0 0 16px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.chips li { padding: 4px 11px; border: 1px solid var(--line); border-radius: 999px; font-size: .88rem; color: var(--fg); background: var(--tint); }
+.services-cta { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { display: inline-block; padding: 9px 16px; border-radius: 8px; font-weight: 700; font-size: .92rem; text-decoration: none; background: var(--fg); color: var(--bg); border: 1px solid var(--fg); }
+.btn:hover { opacity: .88; }
+.btn.ghost { background: transparent; color: var(--fg); border-color: var(--line); }
+.btn.ghost:hover { border-color: var(--fg); opacity: 1; }
+#client-work { scroll-margin-top: 20px; }
+
+/* mobile menu */
+.menu-btn { display: none; }
+@media (max-width: 640px) {
+  .top { position: relative; align-items: center; flex-wrap: nowrap; }
+  .menu-btn {
+    display: block; position: relative; flex: none;
+    width: 44px; height: 44px; padding: 0; margin: 0;
+    -webkit-appearance: none; appearance: none;
+    background-color: var(--paper); border: 1px solid var(--line); border-radius: 10px; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .menu-btn span {
+    position: absolute; left: 50%; width: 22px; height: 2px; margin-left: -11px;
+    background-color: var(--fg); border-radius: 2px; transition: transform .2s, opacity .2s;
+  }
+  .menu-btn span:nth-child(1) { top: 14px; }
+  .menu-btn span:nth-child(2) { top: 20px; }
+  .menu-btn span:nth-child(3) { top: 26px; }
+  .menu-btn[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .menu-btn[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  .top nav {
+    display: none; position: absolute; top: calc(100% + 8px); left: 0; right: 0; z-index: 20;
+    flex-direction: column; gap: 0; padding: 6px 0;
+    background: var(--paper); border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: 0 12px 28px rgba(0,0,0,.12);
+  }
+  .top nav.open { display: flex; }
+  .top nav a { border-bottom: 0; padding: 12px 18px; font-size: 1.05rem; }
+  .top nav a + a { border-top: 1px solid var(--line); }
+  .top nav a:hover { background: var(--tint); }
+}
+</style>
+
+<div class="wrap">
+
+  <header class="top">
+    <span class="name">Shivani Borhade</span>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
+    <nav id="site-nav" aria-label="Sections">
+      <a href="#path">Path</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#college">College</a>
+      <a href="#giving-back">Giving back</a>
+      <a href="#journal">Journal</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero" aria-label="Introduction">
+    <div>
+      <h1>Hi, I'm <span class="mark">Shivani</span>.</h1>
+      <p class="lead">I'm a software engineer working on backend development, infrastructure, AI agents and RAG pipelines. I also take on freelance website projects. Here I write about my projects, my clients and the people I learn from.</p>
+      <div class="status">
+        <span>Software Engineer at TenXer Labs, Bangalore</span>
+        <span>Volunteer in the Jalihal Makerspace team at Yerala Project Society</span>
+        <span>Alumni and volunteer at Friends of Children</span>
+      </div>
+      <span class="open">Open to job opportunities, freelance projects and problem solving</span>
+      <aside class="services" aria-label="Website services">
+        <span class="label">Website services</span>
+        <p class="services-lead">Need a new website, or help fixing the one you have?</p>
+        <ul class="chips">
+          <li>Business websites</li>
+          <li>Quotation and lead forms</li>
+          <li>Fixing broken sites</li>
+          <li>Going live and hosting</li>
+        </ul>
+        <div class="services-cta">
+          <a class="btn" href="#contact">Get in touch</a>
+          <a class="btn ghost" href="#client-work">See client work</a>
+        </div>
+      </aside>
+    </div>
+    <figure class="snap">
+      <img src="shivani.webp" fetchpriority="high" width="600" height="762" alt="Shivani Borhade smiling, in a navy blazer and white shirt">
+      <figcaption>hi, that's me</figcaption>
+    </figure>
+  </section>
+
+  <section aria-label="What I am doing now">
+    <h2>What I'm doing now</h2>
+    <p class="intro">Three things keep me busy at the moment.</p>
+    <div class="now">
+      <div>
+        <h3>Day job</h3>
+        <p>Working as a software engineer at TenXer Labs.</p>
+      </div>
+      <div>
+        <h3>Volunteering</h3>
+        <p>In the Jalihal Makerspace team, working together with students. Alumni of Friends of Children.</p>
+      </div>
+      <div>
+        <h3>Freelance</h3>
+        <p>Websites for any client, startups included, from first sketch to going live, and fixing problems on existing websites. I'm open to new ones.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="path" aria-label="Path">
+    <h2>How I got here</h2>
+    <p class="intro">One internship in March 2025 turned into most of what I do today.</p>
+    <ol class="path">
+      <li>
+        <span class="when">Jan 2026 to now</span>
+        <div>
+          <h3>Software Engineer</h3>
+          <p class="where"><a class="org" href="https://tenxerlabs.com/" target="_blank" rel="noopener"><img class="logo" src="logo-tenxer.webp" alt="" width="40" height="40"><span>TenXer Labs</span></a><span>, Bangalore</span></p>
+          <p class="d">I joined after finishing the Amazing Hand project with the team. I work as a Software Engineer at TenXer Labs, contributing to backend development, AI agent development and LLM-powered applications. My work involves building and maintaining backend systems, improving AI pipelines, and integrating services to deliver reliable and intelligent solutions.</p>
+          <p class="tools"><span class="label">Tools</span>Python, FastAPI, WebSockets, Celery, Docker, CI/CD with GitHub Actions, RAG, embeddings</p>
+        </div>
+      </li>
+      <li>
+        <span class="when">Mar 2025 to now</span>
+        <div>
+          <h3>Engineering Intern, now Volunteer</h3>
+          <p class="where"><a class="org" href="https://yeralaproject.org/" target="_blank" rel="noopener"><img class="logo" src="logo-yps.webp" alt="" width="80" height="40"><span>Yerala Project Society</span></a><span>, Maharashtra</span></p>
+          <p class="d">Yerala is a trust that works on rural development, including in schools. I joined as an engineering intern to help solve problems there. Through the projects I worked on, people were introduced to AI and students learned engineering. My internship was extended, and a second project took me to Bangalore. I stayed on as a volunteer in the makerspace team.</p>
+          <p class="d">I built tools like integrating the Gemini API into software pipelines, learned software development end to end, and worked on IoT-based projects.</p>
+        </div>
+      </li>
+      <li>
+        <span class="when">2024 to now</span>
+        <div>
+          <h3>Freelance website projects</h3>
+          <p class="where">Two clients so far</p>
+          <p class="where client">Client 1: <a class="org" href="https://vscabinetjunnar.in" target="_blank" rel="noopener"><img class="logo dark" src="logo-vs.webp" alt="" width="40" height="40"><span>vscabinetjunnar.in</span></a></p>
+          <p class="d">VS Cabinet, a startup in Narayangaon, Pune. I built their website with a quotation and lead portal.</p>
+          <p class="where client">Client 2: <a class="org" href="https://jalihal.nl" target="_blank" rel="noopener"><img class="logo" src="logo-jalihal.webp" alt="" width="60" height="40"><span>jalihal.nl</span></a></p>
+          <p class="d">The website of a trust connected to the Netherlands. Its structure was broken and it had many issues, and I repaired it in WordPress.</p>
+          <p class="d">I build and fix websites for any client, and I'm open to startups.</p>        </div>
+      </li>
+      <li>
+        <span class="when">Dec 2023 to Jan 2024</span>
+        <div>
+          <h3>Data Science Intern</h3>
+          <p class="where"><a class="org" href="https://www.aiadventures.in/" target="_blank" rel="noopener"><img class="logo" src="logo-aiadv.webp" alt="" width="40" height="40"><span>AI Adventures</span></a></p>
+          <p class="d">Cleaned and visualized five datasets, wrote a web scraper for automated data extraction, and ran EDA to prepare data for ML training.</p>        </div>
+      </li>
+      <li>
+        <span class="when">2021 to 2025</span>
+        <div>
+          <h3>B.E. in Artificial Intelligence &amp; Data Science</h3>
+          <p class="where"><a class="org" href="https://www.unipune.ac.in/" target="_blank" rel="noopener"><img class="logo" src="logo-sppu.webp" alt="" width="60" height="40"><span>Savitribai Phule Pune University</span></a><span>, CGPA 8.67</span></p>
+          <p class="d">National finalist at Smart India Hackathon 2024. More in the college section below.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="skills" aria-label="Skills">
+    <h2>Skills</h2>
+    <p class="intro">What I use most, starting with what I work with every day at my job.</p>
+    <dl class="skills">
+      <dt>Backend and APIs</dt><dd>REST API design and integration, FastAPI, Flask, WebSockets, Celery, MQTT</dd>
+      <dt>Cloud and DevOps</dt><dd>Docker, CI/CD with GitHub Actions, Linux, Git/GitHub, Netlify, Serverless Architecture</dd>
+      <dt>Languages</dt><dd>Python, SQL, JavaScript</dd>
+      <dt>AI agents and RAG</dt><dd>AI agents in Python on top of existing LLMs, LLM API integration (Gemini API), RAG pipelines, chunking, embeddings, RAG evaluation with precision and recall, MCP</dd>
+      <dt>ML and vision</dt><dd>Hugging Face, TensorFlow, PyTorch, OpenCV, Computer Vision</dd>
+      <dt>Databases</dt><dd>PostgreSQL, MongoDB, MySQL, SQLite</dd>
+      <dt>Tools and hardware</dt><dd>Raspberry Pi, Arduino, Postman, VS Code, Claude Code</dd>
+    </dl>
+    <div class="now">
+      <div>
+        <h3>Problem solving</h3>
+        <p>I like picking up what's broken, working out why, and making it work better.</p>
+      </div>
+      <div>
+        <h3>Open source</h3>
+        <p>Amazing Hand, the humanoid hand project I helped finish with TenXer Labs, and RoboKavi, my poem-writing plotter, are open source. My code is on <a class="gh" href="https://github.com/shivaniborhade19" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" aria-label="Projects">
+    <h2>Things I've built</h2>
+    <p class="intro">Hardware, software and a few websites. Each one taught me something I use now.</p>
+    <div class="projects">
+
+      <article class="project">
+        <figure class="snap">
+          <img src="amazing-hand-case.webp" width="800" height="600" alt="The Amazing Hand robotic hand and a white robotic arm inside a lit acrylic display case with a TenXer Labs logo">
+          <figcaption>Amazing Hand in its display case</figcaption>
+        </figure>
+        <div>
+          <span class="label tag">Humanoid arm, open source</span>
+          <h3>Amazing Hand</h3>
+          <p>A web platform to control a robotic hand from anywhere. You upload code, drive the hand and watch live video. It was built with TenXer Labs engineers and shown at Embedded World.</p>
+          <p class="stack">JavaScript, Python, Raspberry Pi, Arduino Uno, REST APIs, WebRTC</p>
+          <p class="go"><a href="https://amazing-hand.tenxerlabs.com/" target="_blank" rel="noopener">Open the Amazing Hand site</a></p>
+        </div>
+      </article>
+
+      <article class="project">
+        <figure class="snap tilt-r">
+          <img src="robokavi-poem.webp" width="1280" height="718" alt="Top view of the orange RoboKavi plotter writing a Marathi poem on paper, with the note AI writing poems in Marathi">
+          <figcaption>AI writing poems in Marathi</figcaption>
+        </figure>
+        <div>
+          <span class="label tag">Robotics + AI, for students, open source</span>
+          <h3><a class="title" href="https://yeralaproject.org/robokavi/" target="_blank" rel="noopener">RoboKavi</a></h3>
+          <p>A CoreXY plotter that writes poems by hand, in Marathi. Google Gemini writes the poem, the code turns it into SVG paths, and the machine draws it.</p>
+          <ul>
+            <li>Built, deployed, debugged and taught end to end.</li>
+            <li>Trained more than 10 students in grades 8 to 10 on AI and robotics basics.</li>
+          </ul>
+          <p class="stack">Python, Gemini API, SVG processing, Inkscape automation</p>
+          <p class="go"><a class="gh" href="https://github.com/shivaniborhade19/Robokavi_yps" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code on GitHub</a><a href="https://yeralaproject.org/robokavi/" target="_blank" rel="noopener">See RoboKavi on the Yerala site</a></p>
+        </div>
+      </article>
+
+      <div class="gallery two" aria-label="RoboKavi photos">
+        <figure class="snap">
+          <img src="robokavi-session.webp" width="1000" height="750" alt="Explaining RoboKavi to a group of students gathered around the plotter and a screen" loading="lazy" decoding="async">
+          <figcaption>teaching a RoboKavi session</figcaption>
+        </figure>
+        <figure class="snap">
+          <img src="robokavi-students.webp" width="1280" height="960" alt="Smiling students holding up the Marathi poems RoboKavi wrote for them, with the Welcome to the RoboKavi Show screen behind them" loading="lazy" decoding="async">
+          <figcaption>students with their poems</figcaption>
+        </figure>
+      </div>
+
+      <article class="project" id="client-work">
+        <figure class="snap">
+          <a class="shot" href="https://vscabinetjunnar.in" target="_blank" rel="noopener"><img src="vs-cabinet-site.webp" width="1279" height="586" alt="Home page of the VS Sound Manufacturing Company website, with the VS Sound Cabinet headline and Explore products and Request a quote buttons" loading="lazy" decoding="async"></a>
+          <figcaption>VS Cabinet, Narayangaon</figcaption>
+        </figure>
+        <div>
+          <span class="label tag">Freelance, client website</span>
+          <h3>VS Cabinet quotation and lead portal</h3>
+          <p>A business website with a serverless quotation and lead system. Customers send an inquiry, the owner gets an email, and an admin dashboard behind Netlify Identity keeps every lead in one place.</p>
+          <p class="stack">HTML, CSS, JavaScript, Netlify Functions, Google Sheets</p>
+          <p class="go"><a href="https://vscabinetjunnar.in" target="_blank" rel="noopener">Visit vscabinetjunnar.in</a></p>
+        </div>
+      </article>
+
+      <article class="project">
+        <figure class="snap tilt-r">
+          <a class="shot" href="https://jalihal.nl" target="_blank" rel="noopener"><img src="jalihal-site.webp" width="500" height="656" alt="Home page of the Stichting Jalihal website, with a photo of children and women under a tree in a field" loading="lazy" decoding="async"></a>
+          <figcaption>Jalihal.nl, repaired</figcaption>
+        </figure>
+        <div>
+          <span class="label tag">Freelance, site rescue</span>
+          <h3>Jalihal.nl</h3>
+          <p>A trust website connected to the Netherlands. Its structure was broken and it had many issues. I fixed them in WordPress.</p>
+          <p class="stack">WordPress</p>
+          <p class="go"><a href="https://jalihal.nl" target="_blank" rel="noopener">Visit jalihal.nl</a></p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="college" aria-label="College">
+    <h2>In college</h2>
+    <p class="intro">B.E. in AI and Data Science, 2021 to 2025. A hackathon grand finale, a state-level robotics final, a national project competition and photos from all three.</p>
+    <div class="projects">
+
+      <article class="project">
+        <figure class="snap">
+          <img src="sih-frame.webp" width="900" height="1256" alt="Our team of six smiling inside the Smart India Hackathon 2024 Grand Finale photo frame">
+          <figcaption>Smart India Hackathon 2024</figcaption>
+        </figure>
+        <div>
+          <span class="label tag">Grand finale, top 5 finalists, Post Office problem statement</span>
+          <h3>AI Postal Queue Monitoring</h3>
+          <p>We were the first team from our college to reach the <a href="https://www.sih.gov.in/" target="_blank" rel="noopener">Smart India Hackathon</a> grand finale. After many brainstorming sessions and late nights of coding, we presented our solution on the big stage in Chennai.</p>
+          <p>The system counts people in a postal queue with real-time object detection and shows crowd analytics on a dashboard. We built it during the 36-hour hackathon.</p>
+          <p>More than the result, it gave us technical experience and taught us how to work as a team.</p>
+          <p class="stack">Python, YOLOv8, OpenCV, Flask, SQLite</p>
+          <p class="go"><a class="gh" href="https://github.com/shivaniborhade19/Smart_India_Hackthon" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code on GitHub</a></p>        </div>
+      </article>
+
+      <div class="gallery" aria-label="Smart India Hackathon photos">
+        <figure class="snap"><img src="sih-stage.webp" width="1000" height="666" alt="The team on a red-carpeted stage holding trophies and certificates with the organizers" loading="lazy" decoding="async"><figcaption>on stage</figcaption></figure>
+        <figure class="snap"><img src="sih-team.webp" width="1000" height="750" alt="The team in blazers presenting their project on a laptop in a seminar hall" loading="lazy" decoding="async"><figcaption>presenting with my team</figcaption></figure>
+        <figure class="snap"><img src="sih-certificate.webp" width="1000" height="691" alt="Smart India Hackathon 2024 participation certificate, name badge and trophy" loading="lazy" decoding="async"><figcaption>my certificate and trophy</figcaption></figure>
+      </div>
+
+      <article class="project">
+        <figure class="snap tilt-r">
+          <img src="anveshna-team.webp" width="1000" height="761" alt="Four Anveshana participants holding certificates of participation and medals in front of the Industrial Technology 4.0 Based Robotic Arm project board">
+          <figcaption>with our medals at Anveshana</figcaption>
+        </figure>
+        <div>
+          <span class="label tag">State-level finalist, 2024</span>
+          <h3>Industry 4.0 Robotic Arm</h3>
+          <p><a href="https://www.agastya.org/anveshana" target="_blank" rel="noopener">Anveshana</a> brings school students and engineering students together to build and present projects. My friend Sumedh Dhangar and I reached the state-level finals with a robotic arm that combines gesture and voice recognition, computer vision and advanced control mechanisms.</p>
+          <p>The competition is as much about mentoring young minds and inspiring curiosity as it is about showing technology.</p>        </div>
+      </article>
+
+      <figure class="snap vid">
+        <video controls playsinline preload="none" poster="anveshna-poster.webp" width="1024" height="576">
+          <source src="anveshna-arm.mp4" type="video/mp4">
+          Your browser can't play this video.
+        </video>
+        <figcaption>the robotic arm at work</figcaption>
+      </figure>
+
+      <article class="project">
+        <figure class="snap">
+          <img src="nlpc-banner.webp" width="960" height="1280" alt="Three team members in white shirts beside the IETE Pune Centre National Level Project Competition 2025 banner at COEP Technological University" loading="lazy" decoding="async">
+          <figcaption>our team at NLPC-25, COEP Pune</figcaption>
+        </figure>
+        <div>
+          <span class="label tag">National level project competition, April 2025</span>
+          <h3>Multilayered Home Security System</h3>
+          <p>We presented this at NLPC-25, the IETE Pune Centre's national level project competition at COEP Technological University.</p>
+          <p>The system protects a home in three layers. RFID and a keypad control the gate, a biometric lock guards the locker, and a motion sensor with a camera watches the backyard. When OpenCV spots a threat, the image is sent on WhatsApp, and the Blink app shows everything live.</p>
+          <p class="stack">RFID, keypad, biometric authentication, motion sensor, OpenCV, WhatsApp API, Blink app</p>
+        </div>
+      </article>
+
+      <figure class="snap vid">
+        <img src="nlpc-demo.webp" width="1280" height="960" alt="The three team members smiling beside the working prototype and a laptop showing the project slide" loading="lazy" decoding="async">
+        <figcaption>demoing the prototype</figcaption>
+      </figure>
+
+    </div>
+  </section>
+
+  <section id="giving-back" aria-label="Giving back">
+    <h2>Giving back</h2>
+    <p class="intro">People helped me get through college and into my first projects. I try to do the same for students now.</p>
+    <ol class="path">
+      <li>
+        <span class="when">Now</span>
+        <div>
+          <h3>Alumni and volunteer</h3>
+          <p class="where"><a class="org" href="https://www.focpune.org/" target="_blank" rel="noopener"><img class="logo" src="logo-foc.webp" alt="" width="40" height="50"><span>Friends of Children (FOC)</span></a></p>
+          <p class="d">FOC supported me through college. Through their internship cell program, I got my internship at Yerala Project Society. Now that I have a job, I stay connected with FOC as an alumni.</p>
+        </div>
+      </li>
+      <li>
+        <span class="when">Now</span>
+        <div>
+          <h3>Volunteer, makerspace team</h3>
+          <p class="where"><a class="org" href="https://makerspace.yeralaproject.org/" target="_blank" rel="noopener"><img class="logo round" src="logo-makerspace.webp" alt="" width="40" height="40"><span>Jalihal Makerspace, Yerala Project Society</span></a></p>
+          <p class="d">I'm part of the makerspace team, where students in grades 8 and 9 build projects with interns and engineers. I work together with the new interns, solving problems as a team, alongside the people who once guided me.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="journal" aria-label="Journal">
+    <h2>Journal</h2>
+    <p class="intro">Short notes on what the work was really like. Tap a row to open it.</p>
+    <div class="entries">
+
+      <details>
+        <summary><span class="t">Repairing a broken WordPress site for a client in the Netherlands</span><span class="meta">Freelance</span></summary>
+        <div class="post">
+          <p>Jalihal.nl was my second client and my first international one. The site belongs to a trust connected to the Netherlands, and I came to it through a connection.</p>
+          <h4>What was broken</h4>
+          <p>Two problems were the biggest. The site's structure had broken, and a database conflict had deleted the site's images. I went through the site piece by piece and fixed everything in WordPress until it worked the way the trust expected.</p>
+          <h4>What I learned</h4>
+          <p>Beyond the technical fixes, I learned how to talk with a client to understand what the real problem is, then work out how to solve it step by step. Now I know the whole process to follow when a problem like this comes up.</p>
+          <h4>What they said</h4>
+          <p>The trust thanked me for giving my time and for fixing the site as quickly as possible. It was a really good experience.</p>
+          <p><a href="https://jalihal.nl" target="_blank" rel="noopener">Visit jalihal.nl</a></p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="t">What the students of a village school taught me</span><span class="meta">Yerala Project Society</span></summary>
+        <div class="post">
+          <p>Yerala hired me as an engineering intern in March 2025. The trust works on rural development in Maharashtra, and its schools needed an engineer for their projects. The plan was simple: go there, build the projects, set them up and give demos. It turned into much more. I explained how things worked, the students jumped in, and we ended up building them together. I learned as much from them as they did from me.</p>
+          <p>I built two projects that mix hardware and software, and used them to introduce students to AI. RoboKavi, the poem-writing plotter, was the first. The internship was meant to be three months and got extended. A second project took me to Bangalore, where the TenXer Labs team and I finished an open source humanoid hand and set it up in the school.</p>
+          <div class="pics">
+            <figure class="snap">
+              <img src="journal-student-coding.webp" width="960" height="1280" alt="A student at a keyboard running RoboKavi, with the plotter on the table and code on a large screen, while another student watches" loading="lazy" decoding="async">
+              <figcaption>a student running RoboKavi</figcaption>
+            </figure>
+            <figure class="snap">
+              <img src="journal-classroom.webp" width="1280" height="960" alt="Me holding a microphone and talking with a room of students and teachers at the Yerala school" loading="lazy" decoding="async">
+              <figcaption>talking with the students and teachers</figcaption>
+            </figure>
+          </div>
+          <h4>A manager who gave me room to try</h4>
+          <p>My manager, Pranjal sir, was very supportive. He gave me the freedom to treat each project as my own, so I tried a lot of things. Whenever I got stuck, he was there to help, and he kept pushing me to go further.</p>
+          <h4>What broke on demo day</h4>
+          <p>During one RoboKavi demo, the machine started writing messy, wrong letters. I had to find the problem and solve it on the spot, on the ground.</p>
+          <h4>What the students taught me</h4>
+          <p>The students grow up in a village, far from city surroundings, but their curiosity and how quickly they picked things up surprised me again and again. A student in grade 8 or 9 asked me a technical question about coding and the motor controller, something I never expected at that age. Others gave me ideas, like asking whether RoboKavi could draw something just for them.</p>
+          <p>Sometimes they fixed problems before I did. Once the pen was writing in the wrong place, and I was adjusting it in the code. The students worked out that the pen was actually set in the wrong position on the hardware, and they fixed it themselves.</p>
+          <p>When the Amazing Hand arrived, they helped me set up the hardware. One grade 8 student asked a question that surprised me: "If I make a gesture with my hand, will this hand copy me and do the same thing?"</p>
+          <h4>Why it stayed with me</h4>
+          <p>Over time I got emotionally attached to the students. Beyond the work, they told me about their everyday lives, how they go to school and help on their families' farms.</p>
+          <p>One day they showed me a 3D game you play by wearing goggles, where everything around you appears in 3D. It was new for me too, and we enjoyed it together.</p>
+          <p>I also felt connected to the teachers, who were always very helpful, and to the aunty who cooked our food, who was very sweet to me. Overall, it was a really good experience.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="t">From intern to volunteer on a makerspace team</span><span class="meta">Jalihal Makerspace</span></summary>
+        <div class="post">
+          <p>After I started at TenXer Labs, I kept helping Yerala on new projects. New interns joined, and this time we worked on the projects together. When one of us got stuck, we sat down and found the root cause as a team.</p>
+          <p>We started a makerspace team with students in grades 8 and 9. I work with the interns and the students, and I work alongside the people who once guided me.</p>
+          <div class="pics trio">
+            <figure class="snap wide">
+              <img src="makerspace-robotex-steps.webp" width="1200" height="900" alt="The makerspace team, teachers and me standing on white marble steps with the Cadero robot, below a Robotex India National Championship 2025 banner" loading="lazy" decoding="async">
+              <figcaption>the team and Cadero at the Robotex India National Championship 2025</figcaption>
+            </figure>
+            <figure class="snap">
+              <img src="makerspace-cadero-demo.webp" width="1200" height="900" alt="A student presenting the Cadero project to visitors in the makerspace, with people joining on a video call" loading="lazy" decoding="async">
+              <figcaption>a student presenting Cadero</figcaption>
+            </figure>
+            <figure class="snap">
+              <img src="makerspace-robotex-team.webp" width="1200" height="900" alt="Smiling students in red Robotex India T-shirts sitting together in a large hall" loading="lazy" decoding="async">
+              <figcaption>the students at Robotex</figcaption>
+            </figure>
+          </div>
+          <h4>What we're building now</h4>
+          <p>Right now the team is building Cadero, a delivery robot for the campus. I work with the new engineering interns online. When we get stuck, we debug together and figure out the root cause, and I bring in everything I've learned from my own projects and work.</p>
+          <h4>Students leading the way</h4>
+          <p>In the makerspace team, the students now come up with the project ideas themselves, and their thinking keeps going one step further. We only give them a slight push in the right direction. Whenever they need technical help, I explain it to them as an engineer.</p>
+          <h4>Looking back</h4>
+          <p>This journey still surprises me. I started here as an intern. Today I work my job and help the makerspace team side by side, and we keep building together.</p>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <section id="contact" class="contact" aria-label="Contact">
+    <h2>Say hello</h2>
+    <p>I'm open to job opportunities, freelance projects and problems worth solving. If you have one, write to me.</p>
+    <div class="row">
+      <code id="email">shivaniborhade9@gmail.com</code>
+      <button type="button" id="copy">Copy email</button>
+      <span id="links"></span>
+    </div>
+  </section>
+
+  <footer class="foot">Shivani Borhade, B.E. in AI and Data Science, class of 2025</footer>
+
+</div>
+
+<script>
+/* Links shown in the contact row. Empty ones are hidden. Put a resume link
+   (for example a shared PDF) in Resume when you have one. */
+var LINKS = {
+  GitHub: "https://github.com/shivaniborhade19",
+  LinkedIn: "https://www.linkedin.com/in/shivani-borhade-aistudent/",
+  Resume: ""
+};
+
+(function () {
+  var holder = document.getElementById("links");
+  Object.keys(LINKS).forEach(function (name) {
+    if (!LINKS[name]) return;
+    var a = document.createElement("a");
+    a.href = LINKS[name]; a.textContent = name; a.target = "_blank"; a.rel = "noopener";
+    a.style.marginRight = "16px";
+    holder.appendChild(a);
+  });
+
+  var btn = document.getElementById("copy");
+  var email = document.getElementById("email");
+  btn.addEventListener("click", function () {
+    var done = function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy email"; }, 1800); };
+    var fallback = function () {
+      var r = document.createRange(); r.selectNodeContents(email);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = "Selected, press copy";
+    };
+    try {
+      navigator.clipboard.writeText(email.textContent).then(done, fallback);
+    } catch (e) { fallback(); }
+  });
+})();
+</script>
+
+
+<script>
+(function(){
+  var btn=document.querySelector('.menu-btn'), nav=document.getElementById('site-nav');
+  if(!btn||!nav) return;
+  function setOpen(o){ nav.classList.toggle('open',o); btn.setAttribute('aria-expanded',o?'true':'false'); btn.setAttribute('aria-label',o?'Close menu':'Open menu'); }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); setOpen(!nav.classList.contains('open')); });
+  nav.addEventListener('click',function(e){ if(e.target.closest('a')) setOpen(false); });
+  document.addEventListener('click',function(e){ if(!nav.contains(e.target)) setOpen(false); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ setOpen(false); btn.focus(); } });
+})();
+</script>
+</body></html>
